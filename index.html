@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Send message on scroll to visible frames</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <div id="frame-wrap-one">
+      <iframe src="https://alivedd.github.io/frame1/index.html"
+        frameborder="0"
+        class="frame-item">
+      </iframe>
+    </div>
+    <div id="frame-wrap-two" style="margin-top: 100vh;">
+      <iframe src="https://alivedd.github.io/frame2/index.html"
+        frameborder="0"
+        class="frame-item">
+      </iframe>
+    </div>
+  </div>
+  <!-- <script src="https://raw.githubusercontent.com/rambler-digital-solutions/iframe-detector/master/index.js"></script> -->
+  <script>
+    window.addEventListener('load', function() {
+      var allFrames = document.getElementsByTagName('iframe');
+
+      for (var i = 0, len = allFrames.length; i < len; i++) {
+        allFrames[i].setAttribute('visible', false);
+      }
+      sendMessage(allFrames);
+
+      window.addEventListener('scroll', function() {
+        window.requestAnimationFrame(function() {
+          sendMessage(allFrames);
+        });
+      });
+
+
+      function sendMessage(inputFrames) {
+        var frames = inputFrames;
+        var postMessageData = {};
+
+        for (var i = 0, len = frames.length; i < len; i++) {
+          var thisFrame = frames[i];
+          var src = thisFrame.getAttribute('src');
+          var visible = thisFrame.getAttribute('visible');
+          if (isInViewport(thisFrame)) {
+            if (visible === 'false') {
+              postMessageData.visible = true;
+              thisFrame.contentWindow.postMessage(postMessageData, src);
+              thisFrame.setAttribute('visible', true);
+            }
+          } else {
+            if (visible === 'true') {
+              thisFrame.setAttribute('visible', false);
+              postMessageData.visible = false;
+              thisFrame.contentWindow.postMessage(postMessageData, src);
+            }
+          }
+        }
+      }
+
+
+      function isInViewport(element) {
+        var rect = element.getBoundingClientRect();
+        var html = document.documentElement;
+        var elementVisibility = rect.top >= 0
+          && rect.bottom <= (window.innerHeight || html.clientHeight);
+        return elementVisibility;
+      }
+    });
+  </script>
+</body>
+</html>
