@@ -25,6 +25,15 @@
       </iframe>
     </div>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis rerum, dolores quisquam alias consequuntur maiores nam natus cum veniam asperiores sequi aperiam vitae totam ipsam ipsa nulla adipisci magni. Dolores debitis tenetur ea in officiis inventore aut eveniet sapiente voluptates quisquam. Nobis officia possimus necessitatibus nisi. In libero minima provident ullam reprehenderit commodi aspernatur ab, facere? Autem modi, nemo aperiam natus expedita, accusantium tempore, nisi sint ducimus officiis velit beatae et. Iusto quam distinctio labore, impedit. Iusto ipsa officiis esse fuga mollitia. Eligendi inventore cum assumenda soluta, optio saepe. Nemo esse vel dolores cupiditate voluptate dolore, inventore praesentium neque nobis.</p>
+
+    <!-- video-player -->
+    <iframe src="https://demo.dultonmedia.com/skin_eda/index.html"
+      width="720"
+      height="392"
+      frameborder="0"
+      class="video-frame">
+    </iframe>
+
     <div id="frame-wrap-one" style="margin-top: 100vh;">
       <iframe src="https://alivedd.github.io/frame1/index.html"
         frameborder="0"
@@ -61,9 +70,9 @@
 
           if (isInViewport(thisFrame)) {
             if (visible === 'false') {
+              thisFrame.setAttribute('visible', true);
               postMessageData.visible = true;
               thisFrame.contentWindow.postMessage(postMessageData, src);
-              thisFrame.setAttribute('visible', true);
             }
           } else {
             if (visible === 'true') {

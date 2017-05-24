@@ -21,6 +21,9 @@ img {
     padding: 10vh 5vw;
     width: 100%;
 }
+.video-frame {
+    box-shadow: 0 0 4px 0 black;
+}
 #frame-wrap-one,
 #frame-wrap-two {
     box-sizing: border-box;
