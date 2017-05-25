@@ -87,9 +87,9 @@
 
       function isInViewport(element) {
         var rect = element.getBoundingClientRect();
-        var html = document.documentElement.clientHeight;
-        var elementVisibility = rect.top >= 0
-          && rect.bottom <= (window.innerHeight || html.clientHeight);
+        var halfHeight = element.offsetHeight / 2;
+        var elementVisibility = (rect.top + halfHeight) >= 0
+          && (rect.bottom - halfHeight) <= (window.innerHeight || document.documentElement.clientHeight);
         return elementVisibility;
       }
     });
