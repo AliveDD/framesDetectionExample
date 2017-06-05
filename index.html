@@ -10,7 +10,8 @@
     <div id="frame-wrap-one">
       <iframe src="https://alivedd.github.io/frame1"
         frameborder="0"
-        class="frame-item">
+        class="frame-item"
+        data-detection="true">
       </iframe>
     </div>
     <p>
@@ -21,7 +22,8 @@
     <div id="frame-wrap-two" style="margin-top: 100vh;">
       <iframe src="https://alivedd.github.io/frame2"
         frameborder="0"
-        class="frame-item">
+        class="frame-item"
+        data-detection="true">
       </iframe>
     </div>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis rerum, dolores quisquam alias consequuntur maiores nam natus cum veniam asperiores sequi aperiam vitae totam ipsam ipsa nulla adipisci magni. Dolores debitis tenetur ea in officiis inventore aut eveniet sapiente voluptates quisquam. Nobis officia possimus necessitatibus nisi. In libero minima provident ullam reprehenderit commodi aspernatur ab, facere? Autem modi, nemo aperiam natus expedita, accusantium tempore, nisi sint ducimus officiis velit beatae et. Iusto quam distinctio labore, impedit. Iusto ipsa officiis esse fuga mollitia. Eligendi inventore cum assumenda soluta, optio saepe. Nemo esse vel dolores cupiditate voluptate dolore, inventore praesentium neque nobis.</p>
@@ -31,22 +33,27 @@
       width="720"
       height="392"
       frameborder="0"
+      data-detection="true"
       class="video-frame">
     </iframe>
 
     <div id="frame-wrap-three" style="margin-top: 100vh;">
       <iframe src="https://another-frame.updog.co"
         frameborder="0"
-        class="frame-item">
+        class="frame-item"
+        data-detection="true">
       </iframe>
     </div>
   </div>
 
-  <!-- <script type="text/javascript" src="https://raw.githubusercontent.com/rambler-digital-solutions/iframe-detector/master/index.js"></script> -->
+
   <script class="type=text/javascript">
     window.addEventListener('load', function() {
-      var allFrames = document.getElementsByTagName('iframe');
+      var allFrames = document.querySelectorAll('[data-detection]');
+      detectFrames(allFrames);
+    });
 
+    function detectFrames(allFrames) {
       for (var i = 0, len = allFrames.length; i < len; i++) {
         allFrames[i].setAttribute('visible', false);
       }
@@ -95,7 +102,7 @@
       function sendMessage(frame, data, src) {
         frame.contentWindow.postMessage(data, src);
       }
-    });
+    }
   </script>
 </body>
 </html>
