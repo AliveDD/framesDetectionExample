@@ -18,7 +18,7 @@ img {
 }
 .page {
     height: 100%;
-    padding: 10vh 5vw;
+    padding: 10vh 0;
     width: 100%;
 }
 .video-frame {
