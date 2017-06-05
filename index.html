@@ -10,23 +10,45 @@
     <div id="frame-wrap-one">
       <iframe src="https://alivedd.github.io/frame1"
         frameborder="0"
-        class="frame-item"
         data-detection="true">
       </iframe>
     </div>
+
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus enim, eaque illum ab eveniet magni blanditiis libero rem. Eius pariatur minima hic ducimus ex alias, deleniti reprehenderit optio placeat. Ipsam animi accusamus, porro dignissimos assumenda perspiciatis reprehenderit consequuntur molestias minima deleniti aut quam, dolores ratione voluptates ut. Ipsam, hic, consectetur!
     </p>
     <hr>
     <img src="https://i.imgur.com/YfN8lllg.jpg">
-    <div id="frame-wrap-two" style="margin-top: 100vh;">
-      <iframe src="https://alivedd.github.io/frame2"
-        frameborder="0"
-        class="frame-item"
+
+    <div id="frame-wrap-without-src" style="margin-bottom: 7vh;">
+      <span class="frame-title">
+        frame without src
+      </span>
+      <iframe frameborder="0"
         data-detection="true">
       </iframe>
     </div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis rerum, dolores quisquam alias consequuntur maiores nam natus cum veniam asperiores sequi aperiam vitae totam ipsam ipsa nulla adipisci magni. Dolores debitis tenetur ea in officiis inventore aut eveniet sapiente voluptates quisquam. Nobis officia possimus necessitatibus nisi. In libero minima provident ullam reprehenderit commodi aspernatur ab, facere? Autem modi, nemo aperiam natus expedita, accusantium tempore, nisi sint ducimus officiis velit beatae et. Iusto quam distinctio labore, impedit. Iusto ipsa officiis esse fuga mollitia. Eligendi inventore cum assumenda soluta, optio saepe. Nemo esse vel dolores cupiditate voluptate dolore, inventore praesentium neque nobis.</p>
+
+    <div id="frame-wrap-without-data-attr">
+      <span class="frame-title">
+        frame without data attr
+      </span>
+      <iframe src="https://alivedd.github.io/frame1"
+        frameborder="0">
+      </iframe>
+    </div>
+
+
+    <div id="frame-wrap-two" style="margin-top: 100vh;">
+      <iframe src="https://alivedd.github.io/frame2"
+        frameborder="0"
+        data-detection="true">
+      </iframe>
+    </div>
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis rerum, dolores quisquam alias consequuntur maiores nam natus cum veniam asperiores sequi aperiam vitae totam ipsam ipsa nulla adipisci magni. Dolores debitis tenetur ea in officiis inventore aut eveniet sapiente voluptates quisquam. Nobis officia possimus necessitatibus nisi. In libero minima provident ullam reprehenderit commodi aspernatur ab, facere? Autem modi, nemo aperiam natus expedita, accusantium tempore, nisi sint ducimus officiis velit beatae et. Iusto quam distinctio labore, impedit. Iusto ipsa officiis esse fuga mollitia. Eligendi inventore cum assumenda soluta, optio saepe. Nemo esse vel dolores cupiditate voluptate dolore, inventore praesentium neque nobis.
+    </p>
 
     <!-- video-player -->
     <iframe src="https://demo.dultonmedia.com/skin_eda/index.html"
@@ -37,19 +59,17 @@
       class="video-frame">
     </iframe>
 
-    <div id="frame-wrap-three" style="margin-top: 100vh;">
+    <div id="frame-wrap-another" style="margin-top: 100vh;">
       <iframe src="https://another-frame.updog.co"
         frameborder="0"
-        class="frame-item"
         data-detection="true">
       </iframe>
     </div>
   </div>
 
-
   <script class="type=text/javascript">
     window.addEventListener('load', function() {
-      var allFrames = document.querySelectorAll('[data-detection]');
+      var allFrames = document.querySelectorAll('[data-detection][src]');
       detectFrames(allFrames);
     });
 
@@ -57,7 +77,6 @@
       for (var i = 0, len = allFrames.length; i < len; i++) {
         allFrames[i].setAttribute('visible', false);
       }
-
       prepairSending(allFrames);
 
       window.addEventListener('scroll', function() {

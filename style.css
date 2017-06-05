@@ -26,25 +26,48 @@ img {
 }
 #frame-wrap-one,
 #frame-wrap-two,
-#frame-wrap-three {
+#frame-wrap-another,
+#frame-wrap-without-src,
+#frame-wrap-without-data-attr {
     box-sizing: border-box;
     display: block;
     margin: 2vh auto;
     height: 10vh;
     width: 25vw;
     box-shadow: inset 0 0 0 .3vw;
+    position: relative;
 }
+
+#frame-wrap-one iframe,
+#frame-wrap-two iframe,
+#frame-wrap-another iframe,
+#frame-wrap-without-src iframe,
+#frame-wrap-without-data-attr iframe {
+    width: 100%;
+    display: block;
+    height: 100%;
+}
+
 #frame-wrap-one {
     color: red;
 }
 #frame-wrap-two {
     color: blue;
 }
-#frame-wrap-three {
-    color: green;
+#frame-wrap-another {
+    color: purple;
 }
-.frame-item {
-    width: 100%;
-    display: block;
-    height: 100%;
+#frame-wrap-without-src,
+#frame-wrap-without-data-attr {
+    color: #000000;
+    opacity: 0.62;
+}
+.frame-title {
+    position: absolute;
+    white-space: nowrap;
+    top: -1.618em;
+    left: 0;
+    font-size: 1.6vw;
+    line-height: 1em;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Helvetica, Arial, sans-serif;
 }
