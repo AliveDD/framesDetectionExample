@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 html {
     height: 100%;
     min-height: 5000px;
@@ -18,7 +21,7 @@ img {
 }
 .page {
     height: 100%;
-    padding: 10vh 0;
+    padding: 10vh 4vw;
     width: 100%;
 }
 .video-frame {
@@ -28,7 +31,10 @@ img {
 #frame-wrap-two,
 #frame-wrap-another,
 #frame-wrap-without-src,
-#frame-wrap-without-data-attr {
+#frame-wrap-without-data-attr,
+#frame-wrap-with-response-1,
+#frame-wrap-with-response-2,
+#frame-wrap-with-response-0 {
     box-sizing: border-box;
     display: block;
     margin: 2vh 0;
@@ -42,10 +48,37 @@ img {
 #frame-wrap-two iframe,
 #frame-wrap-another iframe,
 #frame-wrap-without-src iframe,
-#frame-wrap-without-data-attr iframe {
+#frame-wrap-without-data-attr iframe,
+#frame-wrap-with-response-1 iframe,
+#frame-wrap-with-response-2 iframe,
+#frame-wrap-with-response-0 iframe {
     width: 100%;
     display: block;
     height: 100%;
+}
+
+#frame-wrap-with-response-1,
+#frame-wrap-with-response-2,
+#frame-wrap-with-response-0 {
+    height: 27vh;
+    margin: 0 3vw 10vh 0;
+}
+
+
+#frame-wrap-with-response-1 {
+    color: gold;
+}
+
+#frame-wrap-with-response-2 {
+    color: orange;
+}
+
+#frame-wrap-with-response-0 {
+    color: #c8c8c8;
+}
+
+.frames-in-row {
+    display: flex;
 }
 
 #frame-wrap-one {

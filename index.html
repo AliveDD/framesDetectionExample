@@ -7,6 +7,30 @@
 </head>
 <body>
   <div class="page">
+    <div class="frames-in-row">
+      <div id="frame-wrap-with-response-1">
+        <iframe src="https://alivedd.github.io/frame-with-response-1/"
+          frameborder="0"
+          data-detection="true">
+        </iframe>
+      </div>
+
+      <div id="frame-wrap-with-response-2">
+        <iframe src="https://alivedd.github.io/frame-with-response-2/"
+          frameborder="0"
+          data-detection="true">
+        </iframe>
+      </div>
+
+      <div id="frame-wrap-with-response-0">
+        <iframe src="https://alivedd.github.io/frame-with-response-0/"
+          frameborder="0"
+          data-detection="false">
+        </iframe>
+      </div>
+    </div>
+
+
     <div id="frame-wrap-one">
       <iframe src="https://alivedd.github.io/frame1"
         frameborder="0"
@@ -14,11 +38,13 @@
       </iframe>
     </div>
 
+
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus enim, eaque illum ab eveniet magni blanditiis libero rem. Eius pariatur minima hic ducimus ex alias, deleniti reprehenderit optio placeat. Ipsam animi accusamus, porro dignissimos assumenda perspiciatis reprehenderit consequuntur molestias minima deleniti aut quam, dolores ratione voluptates ut. Ipsam, hic, consectetur!
     </p>
     <hr>
     <img src="https://i.imgur.com/YfN8lllg.jpg">
+
 
     <div id="frame-wrap-without-src" style="margin-bottom: 15vh;">
       <span class="frame-title">
@@ -28,6 +54,7 @@
         data-detection="true">
       </iframe>
     </div>
+
 
     <div id="frame-wrap-without-data-attr">
       <span class="frame-title">
@@ -51,13 +78,13 @@
     </p>
 
     <!-- video-player -->
-    <iframe src="https://demo.dultonmedia.com/skin_eda/index.html"
+    <!-- <iframe src="https://demo.dultonmedia.com/skin_eda/index.html"
       width="720"
       height="392"
       frameborder="0"
       data-detection="true"
       class="video-frame">
-    </iframe>
+    </iframe> -->
 
     <div id="frame-wrap-another" style="margin-top: 100vh;">
       <iframe src="https://another-frame.updog.co"
@@ -67,7 +94,42 @@
     </div>
   </div>
 
-  <script class="type=text/javascript">
+
+  <script>
+    window.addEventListener('load', function() {
+      var allFrames = document.querySelectorAll('iframe[data-detection=true][src]');
+
+      getMessagesFromChildFrames(allFrames);
+
+      function getMessagesFromChildFrames(inputFrames) {
+        var sourcesArr = [];
+        for (var i = 0; i < inputFrames.length; i++) {
+          var thisFrameSource = inputFrames[i].getAttribute('src')
+          sourcesArr.push(thisFrameSource);
+        }
+
+        window.addEventListener('message', function(event) {
+          filterData(event);
+        });
+
+        function filterData(event) {
+          for (var j = 0; j < sourcesArr.length; j++) {
+            if (sourcesArr[j] === event.origin) {
+              sendReceivedData(event.data.message)
+            }
+          }
+        }
+      }
+
+      function sendReceivedData(message) {
+        // here we can send data to web analytics service
+        console.info(message);
+      }
+    });
+  </script>
+
+
+  <script>
     window.addEventListener('load', function() {
       var allFrames = document.querySelectorAll('iframe[data-detection=true][src]');
       detectFrames(allFrames);
