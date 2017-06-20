@@ -12,8 +12,8 @@
         <iframe src="https://alivedd.github.io/frame-with-response-1/"
           frameborder="0"
           data-detection="true">
+        </iframe>
       </div>
-
       <div id="frame-wrap-with-response-2">
         <iframe src="https://alivedd.github.io/frame-with-response-2/"
           frameborder="0"
@@ -106,9 +106,9 @@
 
         function filterData(event) {
           var thisEventHost = event.origin.split('//')[1];
-          for (var j = 0; j < sourcesArr.length; j++) {;
-            if (sourcesArr[j].indexOf(thisEventHost) > -1) {
-              sendReceivedData(event.data.message)
+          for (var j = 0; j < sourcesArr.length; j++) {
+            if (event.source.location.href === sourcesArr[j]) {
+              sendReceivedData(event.data.message);
             }
           }
         }
