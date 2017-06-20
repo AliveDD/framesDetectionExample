@@ -12,20 +12,12 @@
         <iframe src="https://alivedd.github.io/frame-with-response-1/"
           frameborder="0"
           data-detection="true">
-        </iframe>
       </div>
 
       <div id="frame-wrap-with-response-2">
         <iframe src="https://alivedd.github.io/frame-with-response-2/"
           frameborder="0"
           data-detection="true">
-        </iframe>
-      </div>
-
-      <div id="frame-wrap-with-response-0">
-        <iframe src="https://alivedd.github.io/frame-with-response-0/"
-          frameborder="0"
-          data-detection="false">
         </iframe>
       </div>
     </div>
@@ -113,9 +105,9 @@
         });
 
         function filterData(event) {
-          console.log(event.data, event.origin);
-          for (var j = 0; j < sourcesArr.length; j++) {
-            if (sourcesArr[j].indexOf(event.origin) > -1) {
+          var thisEventHost = event.origin.split('//')[1];
+          for (var j = 0; j < sourcesArr.length; j++) {;
+            if (sourcesArr[j].indexOf(thisEventHost) > -1) {
               sendReceivedData(event.data.message)
             }
           }
