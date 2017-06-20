@@ -113,8 +113,9 @@
         });
 
         function filterData(event) {
+          console.log(event.data, event.origin);
           for (var j = 0; j < sourcesArr.length; j++) {
-            if (sourcesArr[j] === event.origin) {
+            if (sourcesArr[j].indexOf(event.origin) > -1) {
               sendReceivedData(event.data.message)
             }
           }
