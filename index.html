@@ -5,8 +5,31 @@
   <title>Send message on scroll to visible frames</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-eagle-video-floating="false"
+  data-eagle-video-float-position="bottom-right"
+  data-eagle-video-float-width="480px"
+  data-eagle-video-float-offset="40px 20px">
   <div class="page">
+    <!-- video-player's -->
+    <div class="frames-in-row" style="margin-bottom: 10em;">
+      <iframe src="//gazeta.media.eagleplatform.com/index/player?record_id=787127&player_template_id=9318"
+        width="720"
+        height="392"
+        frameborder="0"
+        data-detection="true"
+        class="video-frame">
+      </iframe>
+
+      <iframe src="//gazeta.media.eagleplatform.com/index/player?record_id=719602&player_template_id=9318"
+        width="720"
+        height="392"
+        frameborder="0"
+        data-detection="true"
+        class="video-frame">
+      </iframe>
+    </div>
+
+
     <div class="frames-in-row">
       <div id="frame-wrap-with-response-1">
         <iframe src="https://alivedd.github.io/frame-with-response-1/"
@@ -68,119 +91,8 @@
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis rerum, dolores quisquam alias consequuntur maiores nam natus cum veniam asperiores sequi aperiam vitae totam ipsam ipsa nulla adipisci magni. Dolores debitis tenetur ea in officiis inventore aut eveniet sapiente voluptates quisquam. Nobis officia possimus necessitatibus nisi. In libero minima provident ullam reprehenderit commodi aspernatur ab, facere? Autem modi, nemo aperiam natus expedita, accusantium tempore, nisi sint ducimus officiis velit beatae et. Iusto quam distinctio labore, impedit. Iusto ipsa officiis esse fuga mollitia. Eligendi inventore cum assumenda soluta, optio saepe. Nemo esse vel dolores cupiditate voluptate dolore, inventore praesentium neque nobis.
     </p>
-
-    <!-- video-player -->
-    <!-- <iframe src="https://demo.dultonmedia.com/skin_eda/index.html"
-      width="720"
-      height="392"
-      frameborder="0"
-      data-detection="true"
-      class="video-frame">
-    </iframe> -->
-
-    <div id="frame-wrap-another" style="margin-top: 100vh;">
-      <iframe src="https://another-frame.updog.co"
-        frameborder="0"
-        data-detection="true">
-      </iframe>
-    </div>
   </div>
 
-
-  <script>
-    window.addEventListener('load', function() {
-      var allFrames = document.querySelectorAll('iframe[data-detection=true][src]');
-
-      getMessagesFromChildFrames(allFrames);
-
-      function getMessagesFromChildFrames(inputFrames) {
-        var sourcesArr = [];
-        for (var i = 0; i < inputFrames.length; i++) {
-          var thisFrameSource = inputFrames[i].getAttribute('src')
-          sourcesArr.push(thisFrameSource);
-        }
-
-        window.addEventListener('message', function(event) {
-          filterData(event);
-        });
-
-        function filterData(event) {
-          var thisEventHost = event.origin.split('//')[1];
-          for (var j = 0; j < sourcesArr.length; j++) {
-            if (event.source.location.href === sourcesArr[j]) {
-              sendReceivedData(event.data.message);
-            }
-          }
-        }
-      }
-
-      function sendReceivedData(message) {
-        // here we can send data to web analytics service
-        console.info(message);
-      }
-    });
-  </script>
-
-
-  <script>
-    window.addEventListener('load', function() {
-      var allFrames = document.querySelectorAll('iframe[data-detection=true][src]');
-      detectFrames(allFrames);
-    });
-
-    function detectFrames(allFrames) {
-      for (var i = 0, len = allFrames.length; i < len; i++) {
-        allFrames[i].setAttribute('visible', false);
-      }
-      prepairSending(allFrames);
-
-      window.addEventListener('scroll', function() {
-        window.requestAnimationFrame(function() {
-          prepairSending(allFrames);
-        });
-      });
-
-      function prepairSending(inputFrames) {
-        var frames = inputFrames;
-        var postMessageData = {};
-
-        for (var i = 0, len = frames.length; i < len; i++) {
-          var thisFrame = frames[i];
-          var src = thisFrame.getAttribute('src');
-          var visible = thisFrame.getAttribute('visible');
-
-          if (src.indexOf('http') === -1) {
-            src = window.location.protocol + src;
-          }
-
-          if (isInViewport(thisFrame)) {
-            if (visible === 'false') {
-              thisFrame.setAttribute('visible', true);
-              postMessageData.visible = true;
-              sendMessage(thisFrame, postMessageData, src)
-            }
-          } else {
-            if (visible === 'true') {
-              thisFrame.setAttribute('visible', false);
-              postMessageData.visible = false;
-              sendMessage(thisFrame, postMessageData, src)
-            }
-          }
-        }
-      }
-
-      function isInViewport(element) {
-        var rect = element.getBoundingClientRect();
-        var halfHeight = element.offsetHeight / 2;
-        var elementVisibility = (rect.top + halfHeight) >= 0
-          && (rect.bottom - halfHeight) <= (window.innerHeight || document.documentElement.clientHeight);
-        return elementVisibility;
-      }
-
-      function sendMessage(frame, data, src) {
-        frame.contentWindow.postMessage(data, src);
-      }
-    }
-  </script>
+  <script src="iframe-detector.js"></script>
 </body>
 </html>

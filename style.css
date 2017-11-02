@@ -24,9 +24,51 @@ img {
     padding: 10vh 4vw;
     width: 100%;
 }
+
 .video-frame {
-    box-shadow: 0 0 4px 0 black;
+    border: 2px solid #595959;
 }
+
+
+.eagle-video-floating {
+  width: 960px;
+  height: 720px;
+  background: #595959;
+  transition: all 1s transform;
+  border: 2px solid black;
+}
+
+.eagle-video-floating--top-right,
+.eagle-video-floating--bottom-right,
+.eagle-video-floating--bottom-left,
+.eagle-video-floating--top-left {
+  position: fixed;
+  width: 300px;
+  height: 200px;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  border-radius: 1em;
+  box-shadow: 0 2em 2em -1em rgba(0, 0, 0, 0.15),
+    0 0.618em 1em rgba(0, 0, 0, 0.23);
+}
+
+
+.eagle-video-floating--top-right {
+
+}
+.eagle-video-floating--bottom-right {
+
+}
+.eagle-video-floating--bottom-left {
+
+}
+.eagle-video-floating--top-left {
+
+}
+
+
 #frame-wrap-one,
 #frame-wrap-two,
 #frame-wrap-another,
